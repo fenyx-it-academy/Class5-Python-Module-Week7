@@ -24,21 +24,21 @@ class Quiz:
     def save(self):
         with open("quizzes/{}.json".format(self.name),'w') as file:
             json.dump(self.questions,file)
-    def play(questions=[]):
+    def play(questions):
         score=0
         your_score=0
-        for i in range(len(questions)):
+        for i in questions:
             print("Let's start to questions. You will be asked to enter the option you choose (a/b/c/d).\n \
 Then your score will be calculated based on your answers and the difficlty of the questions.\n \
-Question {}: {}\nOptions are:\n{}\n{}\n{}\n{}\n".format(i+1,questions[i]['text'],
-            questions[i]['options'][0],questions[i]['options'][1],questions[i]['options'][2],questions[i]['options'][3]))
+Question {}: {}\nOptions are:\n{}\n{}\n{}\n{}\n".format(i['id'],i['text'],i['options'][0],
+i['options'][1],i['options'][2],i['options'][3]))
             answ=input("Your answer: ")
-            if questions[i]['difficulty']=='easy':
+            if i['difficulty']=='easy':
                 score+=5
-                if answ==questions[i]['answer']:
+                if answ==i['answer']:
                     your_score+=5
-            elif questions[i]['difficulty']=='difficult':
+            elif i['difficulty']=='difficult':
                 score+=10
-                if answ==questions[i]['answer']:
+                if answ==i['answer']:
                     your_score+=10
             print('Your score is {} out of {}'.format(your_score,score))
