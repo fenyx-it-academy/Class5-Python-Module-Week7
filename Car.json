@@ -1,0 +1,8 @@
+{
+    "name": "Car",
+    "brand": {
+        "brand_name": "c180",
+        "brand_year": 2015
+    },
+    "price": "500"
+}
