@@ -24,18 +24,16 @@ class Quiz:
         self.questions = []
         
 
-    def addQuestion(self):
-        id = input('enter the id')
+    def addQuestion(id):
         text = input("Enter the question text")
         while True:
             difficulty = input("Enter the difficulty:(easy/difficult)")
             if difficulty == 'easy' or difficulty == 'difficult':
                 break
-        print(text)
         options = [('a) '+ input('a:')),('b)'+ input('b:')),('c)'+input('c:')),('d)'+ input('d:'))]
         answer = input('What is the correct answer?(a,b,c,d)')
         question= Question(id,text,answer,difficulty,options)
-        self.questions.append({'id': question.display()[0],'text':question.display()[1],'answer':question.display()[2],'difficulty':question.display()[3],'options':question.display()[4]})
+        Quiz.questions.append({'self.id': id,'text':question.display()[1],'answer':question.display()[2],'difficulty':question.display()[3],'options':question.display()[4]})
 
     def save(self):
         with open('quizzes/{}.json'.format(self.name),'w') as f:
