@@ -46,3 +46,11 @@ class BadInputException(Exception):
             self.number_of_files=len([name for name in os.listdir('.') if os.path.isfile(name)])
             self.names_of_files=[name.split(".")[0]  for name in os.listdir('.') if os.path.isfile(name)]
             os.chdir("..")
+if __name__ == "__main__":
+    while True:
+        main()
+        choice=input("clicking a for creating quiz or playing quiz otherwise the program will be terminated: ")
+        if choice=='a':
+            main()
+        else:
+            break            
