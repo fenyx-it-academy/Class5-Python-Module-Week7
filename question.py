@@ -29,4 +29,18 @@ class Quiz:
             json.dump(self.questions,f)
 
     def play(questions = []):
-        pass
+        score=0
+        your_score=0
+        for i in questions:
+            print(f"You will be asked to enter the option you choose (a/b/c/d).\n \
+Question {i['id']}: {i['text']}\nOptions are:\n{i['options'][0]}\n{i['options'][1]}\n{i['options'][2]}\n{i['options'][3]}\n")
+            answ=input("Your answer: ")
+            if i['difficulty']=='easy':
+                score+=5
+                if answ==i['answer']:
+                    your_score+=5
+            elif i['difficulty']=='difficult':
+                score+=10
+                if answ==i['answer']:
+                    your_score+=10
+            print('Your score is {} out of {}'.format(your_score,score))
