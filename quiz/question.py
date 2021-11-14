@@ -1,8 +1,7 @@
 import json
 
 class Question:
-    def __init__(self, id, text, answer, difficulty, option):
-        self.id = id
+    def __init__(self,text, answer, difficulty, option):
         self.text = text
         self.answer = answer
         self.difficulty = difficulty
@@ -18,6 +17,7 @@ class Quiz:
     def addQuestion(self, id):
         text = input('enter your question : ')
         self.id = id
+        self.id = 0
         while True:
             difficulty = input('What is the difficulty of the question? (easy/difficult) : ')
             if difficulty == 'easy' or difficulty == 'difficult':
@@ -31,16 +31,16 @@ class Quiz:
         option_b = input('(b) ')
         option_c = input('(c) ')
         option_d = input('(d) ')
-        self.options = ['a)'+option_a,'b)'+option_b,'c)'+option_c,'d)'+option_d]
+        options = ['a)'+option_a,'b)'+option_b,'c)'+option_c,'d)'+option_d]
         answer = input('What is the correct answer? (a/b/c/d) :')
-        q1 = Question(text, answer, difficulty, self.options)
-        self.question.appen({
-                            "id": self.id,
-                            "text":self.text,
-                            "difficulty":self.difficulty,
-                            "options":self.options,
-                            "answer":self.answer
-                            })
+        q1 = Question(text, answer, difficulty,options)
+        self.id += 1
+        self.question["id"] = self.id
+        self.question["text"] = text
+        self.question["difficulty"] = difficulty
+        self.question["options"] = options
+        self.question["answer"] = answer
+
 
 
     def save(self):
@@ -49,6 +49,7 @@ class Quiz:
 
     def play(self):
         point = 0
+        score = 0
         for i in range(len(self.question)):
             print('''Let's start to questions. 
             You will be asked to enter the option you choose (a/b/c/d).
@@ -57,11 +58,22 @@ class Quiz:
 
             print(f'question{i+1} is {self.question["text"]}')
             print(f'''Options are:
-                                {self.question[i]["option"][0]}\n
-                                {self.question[i]["option"][1]}\n
-                                {self.question[i]["option"][2]}\n
+                                {self.question[i]["option"][0]}
+                                {self.question[i]["option"][1]}
+                                {self.question[i]["option"][2]}
                                 {self.question[i]["option"][3]}''')
             answer = input('enter your answer :')
+            if answer == self.question[i]["answer"]:
+                if self.question[i]["difficulty"] == 'easy':
+                    point+=5
+                    score+=5
+                else:
+                    point+=10
+                    score+=10
+            else:
+                if self.question[i]["difficulty"] == 'easy':
+                    score+=5
+                else:
+                    score+=10
+        print(f'Your score is {point} out of {score}')
 
-
-q1 = Quiz()
