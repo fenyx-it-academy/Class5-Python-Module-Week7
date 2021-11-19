@@ -1,0 +1,8 @@
+{
+    "name": "bike",
+    "brand": {
+        "brand_name": "giant",
+        "brand_year": 2010
+    },
+    "price": "300"
+}
